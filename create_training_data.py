@@ -23,14 +23,14 @@ def keys_to_output(keys):
     return output
 
 file_name = 'training_data.npy'
+file_location = 'D:/Coding Projects/Python/Drivingbot/training_data.npy'
 
-if os.path.isfile(file_name):
+if os.path.isfile(file_location):
     print('File exists, loading previous data!')
-    training_data = list(np.load(file_name))
+    training_data = list(np.load(file_location))
 else:
     print('File does not exist, starting fresh!')
     training_data = []
-
 
 def main():
     for i in list(range(4))[::-1]:
@@ -42,11 +42,11 @@ def main():
         screen = grab_screen(region=(0, 40, 800, 640))
         last_time = time.time()
         screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
-        # resize to something a bit more acceptable for a CNN
-        screen = cv2.resize(screen, (40, 30))
+        screen = cv2.resize(screen, (80, 60))
         keys = key_check()
         output = keys_to_output(keys)
         training_data.append([screen, output])
+        print('x')
 
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
@@ -54,4 +54,7 @@ def main():
 
         if len(training_data) % 500 == 0:
             print(len(training_data))
+            print(training_data[250])
             np.save(file_name, training_data)
+
+main()
