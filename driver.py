@@ -29,7 +29,7 @@ def main():
 		print(i + 1)
 		time.sleep(1)
 
-	model = load_model('model_v1.h5')
+	model = load_model('model.h5')
 
 	while (True):
 		# 800x600 windowed mode
