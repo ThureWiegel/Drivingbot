@@ -48,7 +48,6 @@ def main():
         output = keys_to_output(keys)
         temp = [screen, output]
         training_data.append(temp)
-        #print('x')
 
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
